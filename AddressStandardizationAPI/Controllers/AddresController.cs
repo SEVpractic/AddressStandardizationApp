@@ -4,6 +4,9 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace AddressStandardizationAPI.Controllers
 {
+    /// <summary>
+    /// Контроллер стандартизации адреса
+    /// </summary>
     [ApiController]
     [Route("/addres")]
     public class AddresController : ControllerBase
@@ -15,6 +18,11 @@ namespace AddressStandardizationAPI.Controllers
             responseDto = new ResponseDto();
         }
 
+        /// <summary>
+        /// Метод стандартизации адреса
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]
         public Task<ResponseDto> GetStandardizedAddres()
         {
             return null;
