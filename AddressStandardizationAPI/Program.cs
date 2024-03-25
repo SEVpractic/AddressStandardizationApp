@@ -9,7 +9,7 @@ Log.Logger = new LoggerConfiguration()
 
 var builder = WebApplication.CreateBuilder(args);
 
-SD.DadataApiUrl = builder.Configuration["ServiceUrls:DadataApiUrl"];
+SD.ConfigureSD(builder.Configuration);
 
 // Add services to the container.
 builder.Host.UseSerilog();

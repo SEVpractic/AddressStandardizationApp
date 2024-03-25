@@ -4,6 +4,6 @@ namespace AddressStandardizationAPI.Services
 {
     public interface IAddressService
     {
-        Task<AddressApiDto> GetStandardizedAddress(string address);
+        Task<AddressDto> GetStandardizedAddress(string address);
     }
 }

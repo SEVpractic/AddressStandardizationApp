@@ -1,4 +1,5 @@
-﻿using AutoMapper;
+﻿using AddressStandardizationAPI.Models.Dtos;
+using AutoMapper;
 
 namespace AddressStandardizationAPI.Configs
 {
@@ -8,7 +9,8 @@ namespace AddressStandardizationAPI.Configs
         {
             return new MapperConfiguration(cfg =>
             {
-                //cfg.CreateMap<источник, цель>().ReverseMap();
+                cfg.CreateMap<Dadata.Model.Address, AddressDto>().ReverseMap();
+                cfg.CreateMap<Dadata.Model.AddressMetro, MetroDto>();
             });
         }
     }

@@ -1,6 +1,6 @@
 ﻿namespace AddressStandardizationAPI.Models.Dtos
 {
-    public class AddressApiDto
+    public class AddressDto
     {
         public string? source { get; set; }
         public string? result { get; set; }
@@ -92,9 +92,9 @@
         public int? qc_house { get; set; }
         public int? qc { get; set; }
         public object? unparsed_parts { get; set; }
-        public List<MetroApiDto> metro { get; set; } = new List<MetroApiDto>();
+        public List<MetroDto> metro { get; set; } = new List<MetroDto>();
     }
-    public class MetroApiDto
+    public class MetroDto
     {
         public float? distance { get; set; }
         public string? line { get; set; }

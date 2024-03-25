@@ -1,4 +1,5 @@
-﻿using AddressStandardizationAPI.Models.Dtos;
+﻿using AddressStandardizationAPI.Configs;
+using AddressStandardizationAPI.Models.Dtos;
 using AutoMapper;
 using Dadata;
 using Dadata.Model;
@@ -16,11 +17,12 @@ namespace AddressStandardizationAPI.Services
             this.logger = logger ?? throw new ArgumentNullException(nameof(logger));
         }
 
-        public async Task<AddressApiDto> GetStandardizedAddress(string address)
+        public async Task<AddressDto> GetStandardizedAddress(string address)
         {
-            await CallDadataApi(address);
+            Dadata.Model.Address dadataResponse = await CallDadataApi(address);
+            logger.LogInformation($"Запрос API Dadata выпонен. Строка: {address}");
 
-            return null;
+            return mapper.Map<AddressDto>(dadataResponse);
         }
 
         /// <summary>
@@ -29,15 +31,10 @@ namespace AddressStandardizationAPI.Services
         /// <param name="method"></param>
         /// <param name="data"></param>
         /// <returns></returns>
-        private async Task<ResponseDto> CallDadataApi(string addres)
+        private async Task<Dadata.Model.Address> CallDadataApi(string addres)
         {
-            var token = "2e6e93ba21cfc49768cb62855685c253bb56ae67";
-            var secret = "3e7d048de831a8f4a284edbd6dcbf7fe30641722";
-
-            var api = new CleanClientAsync(token, secret);
-
-            var result = await api.Clean<Address>("воронеж патриотов 34 29");
-            return null;
+            var api = new CleanClientAsync(SD.DadataApiToken, SD.DadataApiSecret);
+            return await api.Clean<Address>(addres);
         }
     }
 }

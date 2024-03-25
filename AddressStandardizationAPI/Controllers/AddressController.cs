@@ -32,7 +32,7 @@ namespace AddressStandardizationAPI.Controllers
         {
             try
             {
-                await addressService.GetStandardizedAddress(address);
+                responseDto.Result = await addressService.GetStandardizedAddress(address);
             }
             catch (Exception ex)
             {
