@@ -16,7 +16,7 @@ namespace AddressStandardizationAPI.Configs
             services.AddSingleton(mapper);
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
-            services.AddScoped<IAddresService, AddresService>();
+            services.AddScoped<IAddressService, AddressService>();
 
             return services;
         }
