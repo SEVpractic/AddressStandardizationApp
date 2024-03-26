@@ -8,7 +8,7 @@ namespace AddressStandardizationAPI.Controllers
     /// Контроллер стандартизации адреса
     /// </summary>
     [ApiController]
-    [Route("/addres")]
+    [Route("/address")]
     public class AddressController : ControllerBase
     {
         private readonly ResponseDto responseDto;

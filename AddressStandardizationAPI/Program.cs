@@ -1,7 +1,5 @@
 using AddressStandardizationAPI.Configs;
-using Microsoft.OpenApi.Models;
 using Serilog;
-using System.Reflection;
 
 Log.Logger = new LoggerConfiguration()
     .MinimumLevel.Information()
