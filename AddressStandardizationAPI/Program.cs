@@ -1,5 +1,7 @@
 using AddressStandardizationAPI.Configs;
+using Microsoft.OpenApi.Models;
 using Serilog;
+using System.Reflection;
 
 Log.Logger = new LoggerConfiguration()
     .MinimumLevel.Information()
@@ -15,11 +17,9 @@ SD.ConfigureSD(builder.Configuration);
 builder.Host.UseSerilog();
 builder.Services.AddHttpClient();
 builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
 
 builder.Services.GetServicesConfig();
+builder.Services.GetSwaggerConfig();
 
 var app = builder.Build();
 
@@ -29,6 +29,9 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+app.UseStaticFiles();
+app.UseDirectoryBrowser();
 
 app.UseAuthorization();
 

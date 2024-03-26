@@ -1,5 +1,7 @@
 ﻿using AddressStandardizationAPI.Services;
 using AutoMapper;
+using Microsoft.OpenApi.Models;
+using System.Reflection;
 
 namespace AddressStandardizationAPI.Configs
 {
@@ -19,6 +21,29 @@ namespace AddressStandardizationAPI.Configs
             services.AddScoped<IAddressService, AddressService>();
 
             return services;
+        }
+
+        /// <summary> Получение конфигурации свагера</summary>
+        /// <param name="service"></param>
+        /// <param name="configuration"></param>
+        /// <returns></returns>
+        public static IServiceCollection GetSwaggerConfig(this IServiceCollection service)
+        {
+            service.AddEndpointsApiExplorer();
+            service.AddSwaggerGen(options =>
+            {
+                options.SwaggerDoc("v1", new OpenApiInfo
+                {
+                    Title = "AddressStandardizationAPI",
+                    Version = "v1",
+                    Description = "Сервис стандартизации сырого адреса, введенного пользователем, с применением DadataApi",
+                });
+
+                var xmlFilename = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+                options.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory, xmlFilename));
+            });
+
+            return service;
         }
     }
 }
